@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+    <% include ./include/head %>
+    <body>
+
+        <div class="container">
+            <div class="row">
+                
+            <% include ./include/header %>
+            </div>
+            <hr>
+            <div class="table100 ver1 m-b-110">
+                <div class="table100-head">
+                  <table>
+                  <thead>
+                  <tr class="row100 head">
+                    <th class="cell100 column1" >Name</th>
+                    <th class="cell100 column2" >Registered</th>
+                  </tr>
+                  </thead>
+                </table>
+              </div>
+
+              <div class="table100-body js-pscroll">
+                <table>
+                <tbody>
+                  <% data.forEach(function(d){ %>
+                    <tr class="row100 body">
+                      <td class="cell100 column1"><%= d.name %></td>
+                      <td class="cell100 column2"><%= moment(d.created_at).format('DD-MM-YYYY HH:mm:ss'); %></td>
+                    </tr>
+                  <% }) %>
+                </tbody>
+                </table>
+            </div>
+        </div>
+
+        <% include ./include/scripts %>
+        <% include ./include/footer %>
+    </body>
+</html>
