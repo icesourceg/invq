@@ -1,11 +1,10 @@
-const guestRestController = require('./guest/GuestRestController');
-const guestAPIController = require('./guest/GuestAPIController');
-
+const guest = require('./controllers/Guest');
+const guestAPI = require('./controllers/GuestAPI');
 
 module.exports = function(app) {
 
     //html
-    app.use('/guest', guestRestController);
+    //app.use('/guest', guestRestController);
 
     // API
     ///For Testing
@@ -14,5 +13,5 @@ module.exports = function(app) {
     });
 
     /// To List All Guests
-    app.use('/api/guest', guestAPIController);
+    app.use('/api/guest', guestAPI);
 };
