@@ -1,23 +1,39 @@
 'use strict';
 module.exports = (sequelize, DataTypes) => {
   const Guest = sequelize.define('Guest', {
-    title: {
+    name: {
       allowNull: false,
-      autoIncrement: true,
-      primaryKey: true,
       type: DataTypes.STRING
     },
-    full_name: {
+    shop_name: {
+      allowNull: false,
+      type: DataTypes.STRING
+    },
+    num_invited: {
+      allowNull: false,
+      type: DataTypes.INTEGER
+    },
+    city: {
+      allowNull: false,
       type: DataTypes.STRING
     },
     code: {
+      allowNull: false,
       type: DataTypes.STRING
-    }
+    },
   }, {
     indexes:[
       {
         unique: false,
-        fields:['code', 'full_name']
+        fields:['code']
+      },
+      {
+        unique: false,
+        fields:['name']
+      },
+      {
+        unique: false,
+        fields:['shop_name']
       }
      ],
     underscored: true,

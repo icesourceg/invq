@@ -5,6 +5,25 @@ const moment = require('moment');
 const model = require('../models');
 const router = express.Router();
 
+
+router.get('/signin', (req, res) => {
+  let rows = {
+    'name': "Test nama guest 1",
+    'shop_name': "Test nama toko 1",
+    'num_invited': "2",
+    'city': "Surabaya",
+    'num_reg': "0012",
+  };
+  //return res.status(200).send({"status": 200, "data": rows})
+  return res.render('signin', {data: rows, moment: moment});
+});
+
+router.get('/scan', (req, res) => {
+  //return res.status(200).send({"status": 200, "data": rows})
+  return res.render('scan', {data: []});
+});
+
+
 // router.get('/list', VerifyToken, (req, res) => {
 //   db.query("select * from guest_history", (err, rows, fields) => {
 //     if (err) {

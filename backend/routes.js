@@ -4,7 +4,7 @@ const guestAPI = require('./controllers/GuestAPI');
 module.exports = function(app) {
 
     //html
-    //app.use('/guest', guestRestController);
+    app.use('/', guest);
 
     // API
     ///For Testing

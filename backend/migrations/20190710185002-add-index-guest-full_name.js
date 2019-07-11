@@ -3,15 +3,15 @@
 module.exports = {
   up: (queryInterface, Sequelize) => {
     return queryInterface.addIndex('Guests',
-      ['full_name'],
+      ['name'],
       {
-        indexName: 'full_name',
+        indexName: 'name',
         indicesType: 'INDEX'
       }
       );
   },
 
   down: (queryInterface, Sequelize) => {
-    return queryInterface.removeIndex('Guests', ['full_name'])
+    return queryInterface.removeIndex('Guests', ['name'])
   }
 };

@@ -1,5 +1,3 @@
-const Sequelize = require("sequelize");
-
 module.exports.token = {
   'secret': 'Y2E2YTJjYmUwNTA5ZTYxNjAxNmI0MWU5',
 };

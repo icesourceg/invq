@@ -1,4 +1,4 @@
-const config = require('../config'); // get our config file
+const config = require('../config/config');
 
 function verifyToken(req, res, next) {
 

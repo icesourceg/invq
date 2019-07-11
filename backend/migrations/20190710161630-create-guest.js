@@ -8,17 +8,29 @@ module.exports = {
         primaryKey: true,
         type: Sequelize.INTEGER
       },
-      title: {
+      name: {
         type: Sequelize.STRING,
         allowNull: false
       },
-      full_name: {
-        type: Sequelize.STRING,
-        allowNull: false
+      name: {
+        allowNull: false,
+        type: Sequelize.STRING
+      },
+      shop_name: {
+        allowNull: false,
+        type: Sequelize.STRING
+      },
+      num_invited: {
+        allowNull: false,
+        type: Sequelize.INTEGER
+      },
+      city: {
+        allowNull: false,
+        type: Sequelize.STRING
       },
       code: {
-        type: Sequelize.STRING,
-        allowNull: false
+        allowNull: false,
+        type: Sequelize.STRING
       },
       created_at: {
         allowNull: false,
