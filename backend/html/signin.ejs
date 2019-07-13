@@ -16,28 +16,35 @@
                 <table class="row-space">
                   <tr>
                     <td class="col1">Nama</td>
-                    <td class="col2"><%= data.name %></td>
+                    <td class="col2"><%= data.guest.name %></td>
                   </tr>
                   <tr class="row-space">
                       <td class="col1">Nama Toko</td>
-                      <td class="col2"><%= data.shop_name %></td>
+                      <td class="col2"><%= data.guest.shop_name %></td>
                   </tr>
                   <tr>
                       <td class="col1">Jumlah Undangan</td>
-                      <td class="col2"><%= data.num_invited %> Orang</td>
+                      <td class="col2">
+                      <% if (data.status === 200) { %>
+                        <%= data.guest.num_invited %> Orang 
+                      <% } else { %>
+                        <%= data.guest.num_invited %>
+                      <% } %>
+                      </td>
                   </tr>
                   <tr>
                       <td class="col1">Daerah Asal</td>
-                      <td class="col2"><%= data.city %></td>
+                      <td class="col2"><%= data.guest.city %></td>
                   </tr>
                   <tr>
                       <td class="col1">No Registrasi</td>
-                      <td class="col2"><%= data.num_reg %></td>
+                      <td class="col2"><%= data.guest.num_reg %></td>
                   </tr>
                 </table>
                 <div class="content-footer">
                   Pastikan Nama, Nama Toko dan Daerah Asal sudah benar<br \>
-                  Nomor Registrasi akan diundi untuk doorprize
+                  Nomor Registrasi akan diundi untuk doorprize <br />
+                  <a href="/scan">scan another</a>
                 </div>
               </div>
               </div>

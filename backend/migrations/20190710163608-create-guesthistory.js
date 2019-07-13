@@ -12,6 +12,7 @@ module.exports = {
         type: Sequelize.INTEGER,
         onDelete: "CASCADE",
         allowNull: false,
+        unique: true,
         reference: {
           model: 'Guests',
           key: 'id'
@@ -20,6 +21,11 @@ module.exports = {
       checkin: {
         allowNull: false,
         type: Sequelize.DATE
+      },
+      hasprize: {
+        allowNull: false,
+        type: Sequelize.BOOLEAN,
+        defaultValue: false
       },
       created_at: {
         allowNull: false,

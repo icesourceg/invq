@@ -12,10 +12,6 @@ module.exports = {
         type: Sequelize.STRING,
         allowNull: false
       },
-      name: {
-        allowNull: false,
-        type: Sequelize.STRING
-      },
       shop_name: {
         allowNull: false,
         type: Sequelize.STRING

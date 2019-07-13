@@ -3,9 +3,12 @@ module.exports.token = {
 };
 
 module.exports.api = {
-  'guest_history':  { 
+  'token': 'Y2E2YTJjYmUwNTA5ZTYxNjAxNmI0MWU5',
+  'guest_history':  {
     'url': 'http://127.0.0.1:5000/api/guest/list',
-    'token': 'Y2E2YTJjYmUwNTA5ZTYxNjAxNmI0MWU5'
+  },
+  'guest_signin':  {
+    'url': 'http://127.0.0.1:5000/api/guest/signin',
   }
 };
 

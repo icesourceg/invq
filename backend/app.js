@@ -2,7 +2,7 @@ const express = require('express');
 const path = require("path")
 const app = express();
 var routes = require('./routes');
-routes(app);
+
 
 app.set('view engine', 'ejs');
 
@@ -13,6 +13,7 @@ app.set('views', path.join(__dirname, 'html'))
 console.log( express.static(path.join(__dirname,'public')));
 app.use(express.static(path.join(__dirname,'./public')));
 app.use(express.static('node_modules'));
+routes(app);
 
 const port = process.env.PORT || 5000;
 

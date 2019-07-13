@@ -40,7 +40,7 @@ module.exports = (sequelize, DataTypes) => {
   });
   Guest.associate = function(models) {
     // associations can be defined here
-    Guest.hasMany(models.Guesthistory);
+    Guest.hasOne(models.Guesthistory);
   };
   return Guest;
 };

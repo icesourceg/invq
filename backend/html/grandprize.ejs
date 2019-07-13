@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+    <% include ./include/head %>
+    <body>
+
+        <div class="container">
+            <div class="row">
+              <% include ./include/header %>
+            </div>
+            
+            <div class="prize-content">
+                <div class="grandprize-content-title"><%= data.title %></div>
+                <br />
+                <div class="grandprize-content-header">0015</div>
+                <div class="grandprize-content-body">
+                  <div class="grandprize-column">
+                    <div class="grandprize-cell">123</div>
+                  </div> 
+                  <div class="grandprize-column">
+                      <div class="grandprize-cell">456</div>
+                  </div> 
+                  <div class="grandprize-column">
+                      <div class="grandprize-cell">789</div>
+                  </div> 
+                </div>
+            </div>
+          </div>
+        <% include ./include/scripts %>
+        <% include ./include/footer %>
+    </body>
+</html>

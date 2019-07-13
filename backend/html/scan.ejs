@@ -13,7 +13,20 @@
                 <div class="scan-content-body">
                   <img src="/images/qrcode.png" height="210" width="210" />
                   <br />
-                  SCAN CODE
+                  <form autocomplete="off" name="scanform" id="scanform" method="post" action="/signin">
+                  <input autocomplete="new-password" 
+                  class="scan" 
+                  type="text" 
+                  name="qrdata"
+                  id="qrdata" 
+                  value="SCAN CODE" 
+                  onblur="if(value=='') value = 'SCAN CODE'" 
+                  onfocus="if(value=='SCAN CODE') value = ''" 
+                  onchange="checkLength(this);"
+                  onkeydown="checkLength(this);"
+                  onkeyup="checkLength(this);"
+                  />
+                </form>
                 </div>
             </div>
           </div>

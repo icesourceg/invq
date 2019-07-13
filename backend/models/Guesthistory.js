@@ -3,7 +3,12 @@ module.exports = (sequelize, DataTypes) => {
   const Guesthistory = sequelize.define('Guesthistory', {
     checkin: {
       type: DataTypes.DATE
+    },
+    hasprize: {
+      type: DataTypes.BOOLEAN,
+      defaultvalue: false
     }
+
   }, {
     underscored: true,
   });
