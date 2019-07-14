@@ -2,7 +2,7 @@
 <html lang="en">
     <% include ./include/head %>
     <body>
-
+        <script src="/js/returnscan.js"></script>
         <div class="container">
             <div class="row">
               <% include ./include/header %>
@@ -38,13 +38,13 @@
                   </tr>
                   <tr>
                       <td class="col1">No Registrasi</td>
-                      <td class="col2"><%= data.guest.num_reg %></td>
+                      <td class="col2"><%= data.data.id %></td>
                   </tr>
                 </table>
                 <div class="content-footer">
                   Pastikan Nama, Nama Toko dan Daerah Asal sudah benar<br \>
                   Nomor Registrasi akan diundi untuk doorprize <br />
-                  <a href="/scan">scan another</a>
+                  <a href="/scan" autofocus>scan another</a>
                 </div>
               </div>
               </div>

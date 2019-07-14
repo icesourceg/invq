@@ -9,6 +9,12 @@ module.exports.api = {
   },
   'guest_signin':  {
     'url': 'http://127.0.0.1:5000/api/guest/signin',
+  },
+  'doorprize1':  {
+    'url': 'http://127.0.0.1:5000/api/guest/random/5',
+  },
+  'doorprize2':  {
+    'url': 'http://127.0.0.1:5000/api/guest/random/4',
   }
 };
 

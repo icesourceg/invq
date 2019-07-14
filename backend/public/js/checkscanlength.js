@@ -1,7 +1,8 @@
-function checkLength(field) {
-  console.log(field.value.length);
-  //$('#scanindicator').text(field.value.length);
-  if (field.value.length >= 36){
-    $('#scanform').submit();
-  }
-}
+$(document).ready(function(){
+  $('#qrdata').on("paste keyup", function(){
+    if($(this).val().length >= 36){
+      $('#scanform').submit();
+      $(this).val('SCAN CODE');      
+    }
+  });
+});

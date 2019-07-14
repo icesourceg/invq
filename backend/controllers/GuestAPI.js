@@ -6,7 +6,6 @@ const models  = require('../models');
 const uuidv4 = require('uuid/v4');
 const sequelize = require('sequelize');
 const router = express.Router();
-const numpad = require('../modules/Numberpad');
 
 router.use(bodyParser.urlencoded({ extended: false }));
 router.use(bodyParser.json());
@@ -16,6 +15,30 @@ router.get('/list', VerifyToken, (req, res) => {
       return res.status(200).send({"status": 200, "data": guests, "msg": "OK"})
       console.log(guests.count);
       console.log(guests.rows);
+    }).catch(err => {
+      console.log(err);
+      return res.status(500).send({"status": 500, "data": [], "msg": "Error Retrieving data.."})
+    });
+});
+
+router.get('/random/:numrand', VerifyToken, (req, res) => {
+  models.Guest.findAll({ 
+      order: sequelize.literal('rand()'), 
+      limit: parseInt(req.params.numrand),
+      include: [{
+        model: models.Guesthistory, 
+        required: true,
+        where: {
+          hasprize: 0
+        }
+      }],
+    })
+    .then( guests => {
+      // update hasprize value
+      // sequelize.Promise.map(guests, (g) => {
+      //   return g.Guesthistory.update({hasprize:1})
+      // })
+      return res.status(200).send({"status": 200, "data": guests, "msg": "OK"})      
     }).catch(err => {
       console.log(err);
       return res.status(500).send({"status": 500, "data": [], "msg": "Error Retrieving data.."})
@@ -81,8 +104,6 @@ router.get('/signin/:code', VerifyToken, (req, res) => {
     })
     gh.setGuest(result,  {save: false})
     gh.save().then( result2 => {
-      padded_id = numpad(result2.id,4);
-      result['num_reg'] = padded_id;
       return res.status(200).send({"status": 200, "data": result2, "guest": result, "msg": "OK"});
     }).catch(err2 => {
       console.log(err2)

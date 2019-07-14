@@ -4,16 +4,16 @@ const request = require('request');
 const moment = require('moment');
 const config = require('../config/config');
 const model = require('../models');
+const numpad = require('../modules/Numberpad');
 const router = express.Router();
 
 
 router.use(bodyParser.urlencoded({ extended: false }));
 router.use(bodyParser.json());
 
-router.post('/signin', (req, res) => {
+router.post('/signedin', (req, res) => {
   req_code = req.body.qrdata
   const rest_url = config.api.guest_signin.url + "/" + req_code 
-  console.log(rest_url)
   request.get({
     method: 'GET',
     uri: rest_url,
@@ -21,14 +21,19 @@ router.post('/signin', (req, res) => {
   }, (err, resp, body) => {
     let jsondata = JSON.parse(body)
     console.log(jsondata)
+    console.log('asdas')
+
     if(!err && resp.statusCode == 200){
+      let num_reg = jsondata.data.id
+      console.log(numpad(num_reg,4))
+      jsondata.data.id = numpad(num_reg,4)
       console.log(jsondata)
-      return res.render('signin', {data:jsondata,  
-                                  moment: moment});
+      return res.render('signin', {data:jsondata,moment: moment});
     } else {
       return res.render('signin', {data:jsondata, moment: moment});
     }      
   });
+
   //return res.status(200).send({"status": 200, "data": rows})
   //return res.render('signin', {data: [], moment: moment});
 });
@@ -41,6 +46,15 @@ router.get('/scan', (req, res) => {
 
 router.get('/doorprize1', (req, res) => {
   //return res.status(200).send({"status": 200, "data": rows})
+  const rest_url = config.api.doorprize1.url
+  request.get({
+    method: 'GET',
+    uri: rest_url,
+    headers: {'x-access-token': config.api.token}
+  }, (err, resp, body) => {
+
+  });
+  
   let content = {
     'title': "DOORPRIZE 5gr EMAS",
     'rows': [],
