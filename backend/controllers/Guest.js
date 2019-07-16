@@ -21,11 +21,9 @@ router.post('/signedin', (req, res) => {
   }, (err, resp, body) => {
     let jsondata = JSON.parse(body)
     console.log(jsondata)
-    console.log('asdas')
 
     if(!err && resp.statusCode == 200){
       let num_reg = jsondata.data.id
-      console.log(numpad(num_reg,4))
       jsondata.data.id = numpad(num_reg,4)
       console.log(jsondata)
       return res.render('signin', {data:jsondata,moment: moment});
@@ -52,23 +50,32 @@ router.get('/doorprize1', (req, res) => {
     uri: rest_url,
     headers: {'x-access-token': config.api.token}
   }, (err, resp, body) => {
-
+    let jsondata = JSON.parse(body)
+    console.log(jsondata)
+    let content = {
+      'title': "DOORPRIZE 5gr EMAS",
+      'rows': jsondata,
+    };
+    return res.render('doorprize', {data: content, numpad :numpad});
   });
-  
-  let content = {
-    'title': "DOORPRIZE 5gr EMAS",
-    'rows': [],
-  };
-  return res.render('doorprize', {data: content});
 });
 
 router.get('/doorprize2', (req, res) => {
   //return res.status(200).send({"status": 200, "data": rows})
-  let content = {
-    'title': "DOORPRIZE 10gr EMAS",
-    'rows': [],
-  };
-  return res.render('doorprize', {data: content});
+  const rest_url = config.api.doorprize2.url
+  request.get({
+    method: 'GET',
+    uri: rest_url,
+    headers: {'x-access-token': config.api.token}
+  }, (err, resp, body) => {
+    let jsondata = JSON.parse(body)
+    console.log(jsondata)
+    let content = {
+      'title': "DOORPRIZE 10gr EMAS",
+      'rows': jsondata,
+    };
+  return res.render('doorprize2', {data: content, numpad :numpad});
+  });
 });
 
 
@@ -78,35 +85,30 @@ router.get('/grandprize', (req, res) => {
     'title': "GRANDPRIZE 25gr EMAS",
     'rows': [],
   };
-  return res.render('grandprize', {data: content});
+  return res.render('grandprize', {data: content, numpad :numpad});
 });
 
-// router.get('/list', VerifyToken, (req, res) => {
-//   db.query("select * from guest_history", (err, rows, fields) => {
-//     if (err) {
-//       console.log(err);
-//       return res.status(500).send(err);
-//     } 
-//     return res.status(200).send({"status": 200, "data": rows})
-//   });
-// });
+
+router.get('/guestlist', (req, res) => {
+  request.get({
+    method: 'GET',
+    uri: config.api.guest_history.url,
+    headers: {'x-access-token': config.api.token}
+  }, (err, resp, body) => {
+    let jsondata = JSON.parse(body)
+    if(!err && resp.statusCode == 200){
+      return res.render('guest', {data:jsondata.data, 
+                                  moment: moment, numpad :numpad});
+    } else {
+      return res.render('guest');
+    }      
+  });
+});
 
 
-// router.get('/list', (req, res) => {
-//   request.get({
-//     method: 'GET',
-//     uri: config.api.guest_history.url,
-//     headers: {'x-access-token': config.api.guest_history.token}
-//   }, (err, resp, body) => {
-//     let jsondata = JSON.parse(body)
-//     if(!err && resp.statusCode == 200){
-//       return res.render('guest', {data:jsondata.data, 
-//                                   moment: moment});
-//     } else {
-//       return res.render('guesterr');
-//     }      
-//   });
-// });
+router.get('/guestlistall', (req, res) => {
+  return res.render('guest2');
+});
 
 // router.get('/downloadcsv', (req, res) => {
 //   request.get({

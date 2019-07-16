@@ -1,6 +1,8 @@
 <!DOCTYPE html>
 <html lang="en">
+    <head>
     <% include ./include/head %>
+    </head>
     <body>
         <script src="/js/returnscan.js"></script>
         <div class="container">
@@ -10,6 +12,15 @@
             
             <div class="content">
               <div class="content-background"></div>
+              <div class="content-type">Type <br />
+                <span class="content-desk-type">
+                    <%= data.guest.guesttype %>
+              </span>
+              </div>
+              <div class="content-desk">Meja<br /> <span class="content-desk-type">
+                  <%= data.guest.desknumber %>  
+              </span></div>
+              
               <div class="content-section">
                 <div class="content-header">SELAMAT DATANG</div>
                 <div class="content-body">
@@ -44,7 +55,8 @@
                 <div class="content-footer">
                   Pastikan Nama, Nama Toko dan Daerah Asal sudah benar<br \>
                   Nomor Registrasi akan diundi untuk doorprize <br />
-                  <a href="/scan" autofocus>scan another</a>
+                  <a href="/scan">scan another</a> &nbsp; | &nbsp;
+                  <a href="/guestlistall">guest list</a>
                 </div>
               </div>
               </div>

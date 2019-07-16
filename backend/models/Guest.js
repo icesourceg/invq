@@ -21,6 +21,14 @@ module.exports = (sequelize, DataTypes) => {
       allowNull: false,
       type: DataTypes.STRING
     },
+    guesttype: {
+      allowNull: false,
+      type: DataTypes.STRING
+    },
+    desknumber: {
+      allowNull: false,
+      type: DataTypes.STRING
+    },
   }, {
     indexes:[
       {
@@ -35,6 +43,7 @@ module.exports = (sequelize, DataTypes) => {
         unique: false,
         fields:['shop_name']
       }
+      
      ],
     underscored: true,
   });

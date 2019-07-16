@@ -28,6 +28,14 @@ module.exports = {
         allowNull: false,
         type: Sequelize.STRING
       },
+      guesttype: {
+        allowNull: false,
+        type: Sequelize.STRING
+      },
+      desknumber: {
+        allowNull: false,
+        type: Sequelize.STRING
+      },
       created_at: {
         allowNull: false,
         type: Sequelize.DATE
