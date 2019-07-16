@@ -11,6 +11,6 @@ services:
       - MYSQL_PASSWORD=invqdb-#201908!
       - MYSQL_ROOT_PASSWORD=r00t-#201908!
     volumes:
-      - ${HOME}/dockerdata/mariadb/storage:/var/lib/mysql
-      - ${HOME}/dockerdata/mariadb/share:/share
-      - ${HOME}/dockerdata/mariadb/my.cnf.d:/etc/my.cnf.d
+      - ./storage:/var/lib/mysql
+      - ./share:/share
+      - ./my.cnf.d:/etc/my.cnf.d
