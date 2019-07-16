@@ -14,10 +14,10 @@
     "dialect": "mysql"    
   },
   "production": {
-    "username": "root",
-    "password": "r00t123",
+    "username": "invqdbuser",
+    "password": "invqdb-#201908!",
     "database": "invqdb",
-    "host": "127.0.0.1",
+    "host": "165.22.245.109",
     "dialect": "mysql"
   }
 }
