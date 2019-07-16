@@ -4,10 +4,27 @@ function numberPad(num, size) {
   return s;
 }
 
+function getlivesignedin(){
+  let url = window.location.origin + "/api/guest/countsignedin"
+  $.get( url, function( data ) {
+    $('#livesignedin').text(data["data"]);
+  });
+}
+
+function getliveguests(){
+  let urlguest = window.location.origin + "/api/guest/countguest"
+  $.get( urlguest, function( data ) {
+    $('#liveguest').text(" / " + data["data"]);
+  });
+}
+
 
 $(document).ready(function() {
   var ajax_url = window.location.origin + "/api/guest/listall";
   var signin_url = window.location.origin + "/api/guest/directsignin/";
+  var timer = 30000;
+  getlivesignedin();
+  getliveguests()
 
   var table = $('#tblguestlist').DataTable({
     "processing": true,
@@ -66,38 +83,24 @@ $(document).ready(function() {
 
   table.buttons().container()
         .appendTo( '#tblguestlist_wrapper .col-md-6:eq(0)' );
+
   setInterval( function () {
     table.ajax.reload();
-  }, 60000 );
-  
-  
-  var url = window.location.origin + "/api/guest/countsignedin"
-  $.get( url, function( data ) {
-    $('#livesignedin').text(data["data"]);
-  });
+  }, timer );
+    
   setInterval(function() {
-    $.get( url, function( data ) {
-      $('#livesignedin').text(data["data"]);
-    });
-  }, 60000);
-
-  var urlguest = window.location.origin + "/api/guest/countguest"
-  $.get( urlguest, function( data ) {
-    $('#liveguest').text(" / " + data["data"]);
-  });
-  setInterval(function() {
-    $.get( urlguest, function( data ) {
-      $('#liveguest').text(" / " + data["data"]);
-    });
-  }, 60000);
-
+    getlivesignedin();
+    getliveguests();
+  }, timer);
 
   $(document).on("click", ".directcheckin", function() {
     var clickur = $(this).attr("href");
     $.get( clickur, function( data ) {
       console.log(data);
+      table.ajax.reload();
+      getlivesignedin();
+      getliveguests();  
     });
-    location.reload();
     event.preventDefault();
   });
 
