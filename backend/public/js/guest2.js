@@ -23,6 +23,7 @@ $(document).ready(function() {
   var ajax_url = window.location.origin + "/api/guest/listall";
   var signin_url = window.location.origin + "/api/guest/directsignin/";
   var timer = 30000;
+ 
   getlivesignedin();
   getliveguests()
 
@@ -83,6 +84,11 @@ $(document).ready(function() {
 
   table.buttons().container()
         .appendTo( '#tblguestlist_wrapper .col-md-6:eq(0)' );
+  $.fn.dataTable.ext.errMode = 'none';
+
+  table.on( 'error.dt', function ( e, settings, techNote, message ) {
+    console.log( 'An error has been reported by DataTables: ', message );
+  } ) ;
 
   setInterval( function () {
     table.ajax.reload();
@@ -90,7 +96,6 @@ $(document).ready(function() {
     
   setInterval(function() {
     getlivesignedin();
-    getliveguests();
   }, timer);
 
   $(document).on("click", ".directcheckin", function() {
@@ -99,7 +104,6 @@ $(document).ready(function() {
       console.log(data);
       table.ajax.reload();
       getlivesignedin();
-      getliveguests();  
     });
     event.preventDefault();
   });
