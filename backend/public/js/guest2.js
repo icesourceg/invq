@@ -38,7 +38,7 @@ $(document).ready(function() {
       { "data": "num_invited" },
       { "data": "guesttype" },
       { "data": "desknumber" },
-      { "data": "Guesthistory.id", "defaultContent": "-" , "mRender": function ( data, type, full ) {
+      { "data": "regnumber", "defaultContent": "-" , "mRender": function ( data, type, full ) {
         if (!data){
           return '-';
         } else {
