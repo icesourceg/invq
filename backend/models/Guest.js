@@ -29,6 +29,10 @@ module.exports = (sequelize, DataTypes) => {
       allowNull: false,
       type: DataTypes.STRING
     },
+    regnumber: {
+      allowNull: false,
+      type: DataTypes.STRING
+    },
   }, {
     indexes:[
       {

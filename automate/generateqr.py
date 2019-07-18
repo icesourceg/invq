@@ -93,14 +93,22 @@ if __name__ == "__main__":
   formatted_data = []
   for eachcontent in listcsvcontent:
     ## limit number of vip 
-    gtype = randomvip()
-    
+    #gtype = randomvip()
+    print(eachcontent)
     ## random desk , if vip the desk should be between 1-12
-    dnumber = randomdesk(gtype)
-    gcode = str(uuid.uuid4())
+    #dnumber = randomdesk(gtype)
+    if eachcontent.get('Meja VIP') == "":
+      gtype = "reg"
+      dnumber = "-"
+    else:
+      gtype = "VIP"
+      dnumber = eachcontent.get('Meja VIP')
 
+    gcode = str(uuid.uuid4())
+    #gcode = eachcontent.get('Kode')
+    regnumber = "{:04d}".format(int(eachcontent.get('No')))
     clean_shop_name = re.sub(r"[^\w\s]", '', eachcontent.get('Nama Toko'))
-    qrname = "{}_{}_{}.jpeg".format(gtype, clean_shop_name, gcode)
+    qrname = "{}.jpeg".format(regnumber)
     each_data = {
       "name": eachcontent.get('Nama Undangan'),
       "shop_name": eachcontent.get('Nama Toko'),
@@ -108,7 +116,8 @@ if __name__ == "__main__":
       "city": eachcontent.get('Cabang'),
       "code": gcode,
       "guesttype": gtype,
-      "desknumber": dnumber
+      "desknumber": dnumber,
+      "regnumber": regnumber
     }
     formatted_data.append(each_data)
     generateqr(gcode, qrname, output_qr_dir)

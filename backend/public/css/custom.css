@@ -2,7 +2,7 @@ div.content{
   position: absolute;
   min-width: 650px !important;
   width: 650px !important;
-  height: 530px;
+  height: 550px;
   top:0;
 	bottom: 0;
 	left: 0;
@@ -51,6 +51,14 @@ div.content-type{
   left: 630px;
   top: 90px;
   font-size: 1.2em;
+}
+
+div.signedin{
+  font-size: 1em;
+  font-weight: bold;
+  background-color: crimson;
+  text-align: center;
+  width: 97%;
 }
 
 span.content-desk-type{
@@ -237,7 +245,7 @@ div.grandprize-content-title{
 
 div.grandprize-content-header{
   display: table-cell;
-  background: url('../images/banner2.png');
+  background: url('../images/banner3.png');
   background-size: cover;
   background-position: center; 
   font-size: 8em;

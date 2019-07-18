@@ -2,9 +2,10 @@
 <html lang="en">
     <head>
     <% include ./include/head %>
+    <script src="http://github.hubspot.com/odometer/odometer.js"></script>
   </head>
     <body>
-
+        <script src="/js/animatenumber.js"></script>
         <div class="container">
             <div class="row">
               <% include ./include/header %>
@@ -18,7 +19,7 @@
                   <div class="doorprize-column">
                     <div class="doorprize-cell">
                         <div class="doorprize-cell-details-big doorprize-cell-details">
-                          <%= numpad(d.Guesthistory.id,4) %>
+                          <%= d.regnumber %>
                         </div>
                         </div>
                     <div class="doorprize-cell">

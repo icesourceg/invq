@@ -24,6 +24,11 @@
               <div class="content-section">
                 <div class="content-header">SELAMAT DATANG</div>
                 <div class="content-body">
+                  <div class="signedin">
+                      <% if (data.data.id === 'signedin') { %>
+                        User Already Signed In 
+                      <% } %>
+                      </div>
                 <table class="row-space">
                   <tr>
                     <td class="col1">Nama</td>
@@ -49,7 +54,7 @@
                   </tr>
                   <tr>
                       <td class="col1">No Registrasi</td>
-                      <td class="col2"><%= data.data.id %></td>
+                      <td class="col2"><%= data.guest.regnumber %></td>
                   </tr>
                 </table>
                 <div class="content-footer">

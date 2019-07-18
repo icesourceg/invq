@@ -7,6 +7,7 @@ const uuidv4 = require('uuid/v4');
 const sequelize = require('sequelize');
 const router = express.Router();
 
+
 router.use(bodyParser.urlencoded({ extended: false }));
 router.use(bodyParser.json());
 
@@ -94,7 +95,8 @@ router.post('/add', VerifyToken, (req, res) => {
     city: req.body.city,
     code: gen_code,
     guesttype: req.body.guesttype,
-    desknumber: req.body.desknumber
+    desknumber: req.body.desknumber,
+    regnumber: req.body.regnumber
   }).then(result => {
     console.log(result);
     return res.status(200).send({"status": 200, "data": result, "msg": "OK"});
@@ -122,7 +124,8 @@ router.post('/addbulk', VerifyToken, (req, res) => {
       "city": eachguest.city,
       "code": gen_code,
       "guesttype": eachguest.guesttype,
-      "desknumber": eachguest.desknumber
+      "desknumber": eachguest.desknumber,
+      "regnumber": eachguest.regnumber
     }
     complete_data.push(each_data);
   });
@@ -155,17 +158,9 @@ router.get('/signin/:code', VerifyToken, (req, res) => {
     }).catch(err2 => {
       console.log(err2)
       const data = {
-        "id": "User Already Checked In"
+        "id": "signedin"
       }
-      const guest = {
-        "id": "User Already Checked In",
-        "name": "User Already Checked In",
-        "shop_name": "User Already Checked In",
-        "city": "User Already Checked In",
-        "num_invited": "User Already Checked In",
-        "num_reg": "User Already Checked In"
-      }
-      return res.status(500).send({"status": 500, "data": data, "guest": guest, "msg": "Error Saving Guest Checkin.."})
+      return res.status(200).send({"status": 200, "data": data, "guest": result, "msg": "Error Saving Guest Checkin.."})
     })
   }).catch(err => {
     console.log(err)

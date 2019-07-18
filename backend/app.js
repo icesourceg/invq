@@ -1,8 +1,11 @@
 const express = require('express');
 const path = require("path")
 const app = express();
-var routes = require('./routes');
+const env = require('dotenv').config();
+const routes = require('./routes');
 
+app.use(express.json({limit: '100mb'}));
+app.use(express.urlencoded({limit: '100mb', extended: true}));
 
 app.set('view engine', 'ejs');
 
