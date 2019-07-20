@@ -15,6 +15,9 @@ module.exports.api = {
   },
   'doorprize2':  {
     'url': 'http://127.0.0.1:5000/api/guest/random/4',
+  },
+  'grandprize':  {
+    'url': 'http://127.0.0.1:5000/api/guest/random/1',
   }
 };
 

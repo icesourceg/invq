@@ -80,3 +80,20 @@ input.scan {
 }
 
 
+:-webkit-full-screen #header-container { display: none; visibility: hidden; }
+:-webkit-full-screen #footer-container { display: none; visibility: hidden; }
+:-moz-full-screen #header-container { display: none; visibility: hidden; }
+:-moz-full-screen #footer-container { display: none; visibility: hidden; }
+:fullscreen #header-container { display: none; visibility: hidden; }
+:fullscreen #footer-container { display: none; visibility: hidden; }
+
+:-webkit-full-screen header { height: 30px; }
+:-webkit-full-screen footer { height: 30px; }
+:-moz-full-screen header { height: 30px; }
+:-moz-full-screen footer { height: 30px; }
+:fullscreen header { height: 30px; }
+:fullscreen footer { height: 30px; }
+
+:-webkit-full-screen a.expand { bottom: 5px; }
+:-moz-full-screen a.expand { bottom: 5px; }
+:fullscreen a.expand { bottom: 5px; }
