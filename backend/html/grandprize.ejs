@@ -4,7 +4,8 @@
     <% include ./include/head %>
   </head>
     <body>
-
+      <script src="/js/animatenumber.js"></script>
+      <script src="/js/grandprize.js"></script>
         <div class="container">
             <div class="row">
               <% include ./include/header %>
@@ -13,16 +14,16 @@
             <div class="prize-content">
                 <div class="grandprize-content-title"><%= data.title %></div>
                 <br />
-                <div id="regnum-<%= i %>" data-regnumber="<%= data.regnumber %>" class="grandprize-content-header">0015</div>
+                <div id="regnum-0" data-value="<%= data.rows.data[0].regnumber %>" class="grandprize-content-header">0000</div>
                 <div class="grandprize-content-body">
                   <div class="grandprize-column">
-                    <div class="grandprize-cell">123</div>
+                    <div id="shopname-0" data-value="<%= data.rows.data[0].shop_name %>" class="grandprize-cell">-</div>
                   </div> 
                   <div class="grandprize-column">
-                      <div class="grandprize-cell">456</div>
+                      <div id="name-0" data-value="<%= data.rows.data[0].name %>" class="grandprize-cell">-</div>
                   </div> 
                   <div class="grandprize-column">
-                      <div class="grandprize-cell">789</div>
+                      <div id="city-0" data-value="<%= data.rows.data[0].city %>" class="grandprize-cell">-</div>
                   </div> 
                 </div>
             </div>

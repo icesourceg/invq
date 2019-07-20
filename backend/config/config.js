@@ -11,13 +11,13 @@ module.exports.api = {
     'url': 'http://127.0.0.1:5000/api/guest/signin',
   },
   'doorprize1':  {
-    'url': 'http://127.0.0.1:5000/api/guest/random/5',
+    'url': 'http://127.0.0.1:5000/api/guest/random/5/1',
   },
   'doorprize2':  {
-    'url': 'http://127.0.0.1:5000/api/guest/random/4',
+    'url': 'http://127.0.0.1:5000/api/guest/random/4/2',
   },
   'grandprize':  {
-    'url': 'http://127.0.0.1:5000/api/guest/random/1',
+    'url': 'http://127.0.0.1:5000/api/guest/random/1/3',
   }
 };
 

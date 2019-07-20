@@ -61,7 +61,6 @@ router.get('/doorprize1', (req, res) => {
 });
 
 router.get('/doorprize2', (req, res) => {
-  //return res.status(200).send({"status": 200, "data": rows})
   const rest_url = config.api.doorprize2.url
   request.get({
     method: 'GET',
@@ -80,12 +79,25 @@ router.get('/doorprize2', (req, res) => {
 
 
 router.get('/grandprize', (req, res) => {
-  //return res.status(200).send({"status": 200, "data": rows})
-  let content = {
-    'title': "GRANDPRIZE 25gr EMAS",
-    'rows': [],
-  };
+  const rest_url = config.api.grandprize.url
+  request.get({
+    method: 'GET',
+    uri: rest_url,
+    headers: {'x-access-token': config.api.token}
+  }, (err, resp, body) => {
+    let jsondata = JSON.parse(body)
+    console.log(jsondata)
+    let content = {
+      'title': "GRANDPRIZE 25gr EMAS",
+      'rows': jsondata,
+    };
   return res.render('grandprize', {data: content, numpad :numpad});
+  });
+  // let content = {
+  //   'title': "GRANDPRIZE 25gr EMAS",
+  //   'rows': [],
+  // };
+  // return res.render('grandprize', {data: content, numpad :numpad});
 });
 
 
@@ -97,10 +109,10 @@ router.get('/guestlist', (req, res) => {
   }, (err, resp, body) => {
     let jsondata = JSON.parse(body)
     if(!err && resp.statusCode == 200){
-      return res.render('guest', {data:jsondata.data, 
+      return res.render('guest2', {data:jsondata.data, 
                                   moment: moment, numpad :numpad});
     } else {
-      return res.render('guest');
+      return res.render('guest2');
     }      
   });
 });

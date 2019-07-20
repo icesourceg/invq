@@ -5,6 +5,7 @@ const VerifyToken = require('../modules/VerifyToken');
 const models  = require('../models');
 const uuidv4 = require('uuid/v4');
 const sequelize = require('sequelize');
+const Op = sequelize.Op;
 const router = express.Router();
 
 
@@ -57,7 +58,7 @@ router.get('/countguest', (req, res) => {
     });
 });
 
-router.get('/random/:numrand', VerifyToken, (req, res) => {
+router.get('/random/:numrand/:updatedval', VerifyToken, (req, res) => {
   models.Guest.findAll({ 
       order: sequelize.literal('rand()'), 
       limit: parseInt(req.params.numrand),
@@ -65,15 +66,15 @@ router.get('/random/:numrand', VerifyToken, (req, res) => {
         model: models.Guesthistory, 
         required: true,
         where: {
-          hasprize: 0
+          hasprize: {[Op.lt]: 100}
         }
       }],
     })
     .then( guests => {
       // update hasprize value
-      // sequelize.Promise.map(guests, (g) => {
-      //   return g.Guesthistory.update({hasprize:1})
-      // })
+      sequelize.Promise.map(guests, (g) => {
+        return g.Guesthistory.update({hasprize:req.params.updatedval})
+      })
       return res.status(200).send({"status": 200, "data": guests, "msg": "OK"})      
     }).catch(err => {
       console.log(err);
