@@ -6,13 +6,13 @@ const config = require('../config/config');
 const model = require('../models');
 const numpad = require('../modules/Numberpad');
 const router = express.Router();
-const io = require('socket.io')(http);
-
 
 router.use(bodyParser.urlencoded({ extended: false }));
 router.use(bodyParser.json());
 
+
 router.post('/signedin', (req, res) => {
+  let io = req.app.get('socketio');
   req_code = req.body.qrdata
   const rest_url = config.api.guest_signin.url + "/" + req_code 
   request.get({
@@ -22,15 +22,15 @@ router.post('/signedin', (req, res) => {
   }, (err, resp, body) => {
     let jsondata = JSON.parse(body)
     console.log(jsondata)
-
+    
+    
+    console.log('sendsocket');
     if(!err && resp.statusCode == 200){
       let num_reg = jsondata.data.id
       jsondata.data.id = numpad(num_reg,4)
       console.log(jsondata)
-      io.emit('refreshuser', { for: 'everyone' });
-
+      io.emit('hi!', 'refreshsignedin');
       return res.render('signin', {data:jsondata,moment: moment});
-
     } else {
       return res.render('signin', {data:jsondata, moment: moment});
     }      

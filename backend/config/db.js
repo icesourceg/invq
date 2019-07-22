@@ -7,7 +7,7 @@ module.exports =
     "password": "r00t123",
     "database": "invqdb",
     "host": "127.0.0.1",
-    "dialect": "mysql"
+    "dialect": "mysql",
   },
   "test": {
     "username": "root",

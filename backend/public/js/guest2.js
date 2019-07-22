@@ -28,8 +28,8 @@ $(document).ready(function() {
   getlivesignedin();
   getliveguests();
 
-  socket.on('chat message', (msg) => {
-    console.log(msg);
+  socket.on('hi!', (msg) => {
+    console.log("socketio: " + msg);
     if (msg === 'refreshsignedin') {
       getlivesignedin();
       table.ajax.reload();
@@ -101,13 +101,13 @@ $(document).ready(function() {
     console.log( 'An error has been reported by DataTables: ', message );
   } ) ;
 
-  setInterval( () => {
-    table.ajax.reload();
-  }, timer );
+  // setInterval( () => {
+  //   table.ajax.reload();
+  // }, timer );
     
-  setInterval(() => {
-    getlivesignedin();
-  }, timer);
+  // setInterval(() => {
+  //   getlivesignedin();
+  // }, timer);
 
   
 
