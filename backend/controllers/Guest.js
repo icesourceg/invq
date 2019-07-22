@@ -6,6 +6,7 @@ const config = require('../config/config');
 const model = require('../models');
 const numpad = require('../modules/Numberpad');
 const router = express.Router();
+const io = require('socket.io')(http);
 
 
 router.use(bodyParser.urlencoded({ extended: false }));
@@ -26,7 +27,10 @@ router.post('/signedin', (req, res) => {
       let num_reg = jsondata.data.id
       jsondata.data.id = numpad(num_reg,4)
       console.log(jsondata)
+      io.emit('refreshuser', { for: 'everyone' });
+
       return res.render('signin', {data:jsondata,moment: moment});
+
     } else {
       return res.render('signin', {data:jsondata, moment: moment});
     }      

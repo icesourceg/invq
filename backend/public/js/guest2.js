@@ -20,12 +20,22 @@ function getliveguests(){
 
 
 $(document).ready(function() {
-  var ajax_url = window.location.origin + "/api/guest/listall";
-  var signin_url = window.location.origin + "/api/guest/directsignin/";
-  var timer = 30000;
- 
+  const ajax_url = window.location.origin + "/api/guest/listall";
+  const signin_url = window.location.origin + "/api/guest/directsignin/";
+  const timer = 30000;
+  const socket = io();
+
   getlivesignedin();
-  getliveguests()
+  getliveguests();
+
+  socket.on('chat message', (msg) => {
+    console.log(msg);
+    if (msg === 'refreshsignedin') {
+      getlivesignedin();
+      table.ajax.reload();
+      getliveguests();
+    }
+  });
 
   var table = $('#tblguestlist').DataTable({
     "processing": true,
@@ -38,7 +48,7 @@ $(document).ready(function() {
       { "data": "num_invited" },
       { "data": "guesttype" },
       { "data": "desknumber" },
-      { "data": "regnumber", "defaultContent": "-" , "mRender": function ( data, type, full ) {
+      { "data": "regnumber", "defaultContent": "-" , "mRender": ( data, type, full ) => {
         if (!data){
           return '-';
         } else {
@@ -48,7 +58,7 @@ $(document).ready(function() {
     }
     },
       { "data": "Guesthistory.createdAt", 
-          "defaultContent": "-", "mRender": function ( data, type, full ) {
+          "defaultContent": "-", "mRender": ( data, type, full ) => {
             if (!data){
               return '-';
             } else {
@@ -57,7 +67,7 @@ $(document).ready(function() {
             }
         }
       },
-      { "data": "Guesthistory.createdAt", "defaultContent": "-", "mRender": function ( data, type, full ) {
+      { "data": "Guesthistory.createdAt", "defaultContent": "-", "mRender": ( data, type, full ) => {
          if (!data ){
            return '<span class="badge badge-danger">not signed in</span>';
          } else {
@@ -65,7 +75,8 @@ $(document).ready(function() {
          }
       } 
     },
-    { "data": {"histcreate":"Guesthistory.createdAt", "code": "code"}, "defaultContent": "-", "mRender": function ( data, type, full ) {
+    { "data": {"histcreate":"Guesthistory.createdAt", "code": "code"}, 
+               "defaultContent": "-", "mRender": ( data, type, full ) => {
         if (!data.Guesthistory ){
           return '<a class="directcheckin" href="' + signin_url + data.code + '">signin</a>';
         } else {
@@ -86,21 +97,23 @@ $(document).ready(function() {
         .appendTo( '#tblguestlist_wrapper .col-md-6:eq(0)' );
   $.fn.dataTable.ext.errMode = 'none';
 
-  table.on( 'error.dt', function ( e, settings, techNote, message ) {
+  table.on( 'error.dt', ( e, settings, techNote, message ) => {
     console.log( 'An error has been reported by DataTables: ', message );
   } ) ;
 
-  setInterval( function () {
+  setInterval( () => {
     table.ajax.reload();
   }, timer );
     
-  setInterval(function() {
+  setInterval(() => {
     getlivesignedin();
   }, timer);
 
-  $(document).on("click", ".directcheckin", function() {
+  
+
+  $(document).on("click", ".directcheckin", () => {
     var clickur = $(this).attr("href");
-    $.get( clickur, function( data ) {
+    $.get( clickur, ( data ) => {
       console.log(data);
       table.ajax.reload();
       getlivesignedin();

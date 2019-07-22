@@ -83,7 +83,7 @@ def generateqr(txt, qrname, qrpath):
 
 if __name__ == "__main__":
 
-  csvfilepath = "./data2.csv"
+  csvfilepath = "./data_20190722.csv"
   output_jsonfilepath = "./output.json"
   output_csvfilepath = "./output.csv"
   output_qr_dir = "./output_qr"
