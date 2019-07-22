@@ -24,7 +24,7 @@ console.log( express.static(path.join(__dirname,'public')));
 app.use(express.static(path.join(__dirname,'./public')));
 
 // Set the folder for specific modules to be used on views
-app.use('/modules/socket.io', express.static(path.join(__dirname,'node_modules/socket.io-client/dist/')));
+//app.use('/modules/socket.io', express.static(path.join(__dirname,'node_modules/socket.io-client/dist/')));
 routes(app);
 
 
