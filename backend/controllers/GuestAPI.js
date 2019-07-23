@@ -205,17 +205,9 @@ router.get('/directsignin/:code', (req, res) => {
     }).catch(err2 => {
       console.log(err2)
       const data = {
-        "id": "User Already Checked In"
+        "id": "signedin"
       }
-      const guest = {
-        "id": "User Already Checked In",
-        "name": "User Already Checked In",
-        "shop_name": "User Already Checked In",
-        "city": "User Already Checked In",
-        "num_invited": "User Already Checked In",
-        "num_reg": "User Already Checked In"
-      }
-      return res.status(500).send({"status": 500, "data": data, "guest": guest, "msg": "Error Saving Guest Checkin.."})
+      return res.status(500).send({"status": 500, "data": data, "guest": result, "msg": "Error Saving Guest Checkin.."})
     })
   }).catch(err => {
     console.log(err)
