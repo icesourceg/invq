@@ -17,7 +17,7 @@ module.exports = function(app) {
   /// To List All Guests
   app.use('/api/guest', guestAPI);
 
-  //app.get('*', (req, res) => {
-  //  res.redirect('/scan');
-  //});
+  app.get('*', (req, res) => {
+   res.redirect('/scan');
+  });
 };
