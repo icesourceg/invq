@@ -111,7 +111,7 @@ $(document).ready(function() {
 
   
 
-  $(document).on("click", ".directcheckin", () => {
+  $(document).on("click", ".directcheckin", function() {
     var clickur = $(this).attr("href");
     $.get( clickur, ( data ) => {
       console.log(data);

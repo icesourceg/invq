@@ -66,7 +66,7 @@ router.get('/random/:numrand/:updatedval', VerifyToken, (req, res) => {
         model: models.Guesthistory, 
         required: true,
         where: {
-          hasprize: {[Op.lt]: 100}
+          hasprize: 0
         }
       }],
     })
