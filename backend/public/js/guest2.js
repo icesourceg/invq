@@ -32,7 +32,7 @@ $(document).ready(function() {
     console.log("socketio: " + msg);
     if (msg === 'refreshsignedin') {
       getlivesignedin();
-      table.ajax.reload();
+      table.ajax.reload(null, false);
       getliveguests();
     }
   });
@@ -101,12 +101,14 @@ $(document).ready(function() {
     console.log( 'An error has been reported by DataTables: ', message );
   } ) ;
 
-  // setInterval( () => {
-  //   table.ajax.reload();
-  // }, timer );
+  setInterval( () => {
+    console.log('reload content from timer');
+    table.ajax.reload(null, false);
+    getlivesignedin();
+  }, timer );
     
   // setInterval(() => {
-  //   getlivesignedin();
+  //   
   // }, timer);
 
   
