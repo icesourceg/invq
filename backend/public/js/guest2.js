@@ -22,7 +22,7 @@ function getliveguests(){
 $(document).ready(function() {
   const ajax_url = window.location.origin + "/api/guest/listall";
   const signin_url = window.location.origin + "/api/guest/directsignin/";
-  const timer = 30000;
+  const timer = 60000;
   const socket = io();
 
   getlivesignedin();
