@@ -12,7 +12,7 @@ import Qapi
 
 
 if __name__ == "__main__":
-  csvfilepath = "./data_20190723.csv"
+  csvfilepath = "./data.csv"
   output_jsonfilepath = "./output.json"
   output_csvfilepath = "./output.csv"
   apiurl = 'http://localhost:5000/api/guest/list'
