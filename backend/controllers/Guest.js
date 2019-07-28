@@ -60,7 +60,7 @@ router.get('/doorprize1', (req, res) => {
       'title': "DOORPRIZE 5gr EMAS",
       'rows': jsondata,
     };
-    return res.render('doorprize', {data: content, numpad :numpad});
+    return res.render('doorprizegold', {data: content, numpad :numpad});
   });
 });
 
