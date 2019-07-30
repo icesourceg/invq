@@ -30,9 +30,9 @@ router.post('/signedin', (req, res) => {
       jsondata.data.id = numpad(num_reg,4)
       console.log(jsondata)
       io.emit('hi!', 'refreshsignedin');
-      return res.render('signin', {data:jsondata,moment: moment});
+      return res.render('signingold', {data:jsondata,moment: moment});
     } else {
-      return res.render('signin', {data:jsondata, moment: moment});
+      return res.render('signingold', {data:jsondata, moment: moment});
     }      
   });
 
@@ -42,7 +42,7 @@ router.post('/signedin', (req, res) => {
 
 router.get('/scan', (req, res) => {
   //return res.status(200).send({"status": 200, "data": rows})
-  return res.render('scan', {data: []});
+  return res.render('scangold', {data: []});
 });
 
 
@@ -77,7 +77,7 @@ router.get('/doorprize2', (req, res) => {
       'title': "DOORPRIZE 10gr EMAS",
       'rows': jsondata,
     };
-  return res.render('doorprize2', {data: content, numpad :numpad});
+  return res.render('doorprize2gold', {data: content, numpad :numpad});
   });
 });
 
@@ -95,7 +95,7 @@ router.get('/grandprize', (req, res) => {
       'title': "GRANDPRIZE 25gr EMAS",
       'rows': jsondata,
     };
-  return res.render('grandprize', {data: content, numpad :numpad});
+  return res.render('grandprizegold', {data: content, numpad :numpad});
   });
   // let content = {
   //   'title': "GRANDPRIZE 25gr EMAS",
@@ -113,17 +113,17 @@ router.get('/guestlist', (req, res) => {
   }, (err, resp, body) => {
     let jsondata = JSON.parse(body)
     if(!err && resp.statusCode == 200){
-      return res.render('guest2', {data:jsondata.data, 
+      return res.render('guest2gold', {data:jsondata.data, 
                                   moment: moment, numpad :numpad});
     } else {
-      return res.render('guest2');
+      return res.render('guest2gold');
     }      
   });
 });
 
 
 router.get('/guestlistall', (req, res) => {
-  return res.render('guest2');
+  return res.render('guest2gold');
 });
 
 // router.get('/downloadcsv', (req, res) => {
