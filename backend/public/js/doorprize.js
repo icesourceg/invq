@@ -11,6 +11,39 @@ const stoploop = (indexnumber) => {
   $(selecteddetails).html(details);  
 }
 
+const revertrandom = (indexnumber) => {
+  let selectedregnum = '#regnum-' + indexnumber;
+  let regnumber = $(selectedregnum).data('regnumber');
+  let revertvalue = -1;
+  let url = window.location.origin + "/api/guest/revertrandom/" + regnumber + "/" + revertvalue 
+  $.post( url, function( data ) {
+    console.log(data)
+    
+  });
+}
+
+const resetloop = (indexnumber) => {
+  let selectedregnum = '#regnum-' + indexnumber;
+  let selecteddetails = '#details-' + indexnumber;
+  $(selectedregnum).text('0000');
+  let details = '-';
+  $(selecteddetails).html(details);
+}
+
+const getnewrandom = (indexnumber, updatedval) => {
+  let selectedregnum = '#regnum-' + indexnumber;
+  let selecteddetails = '#details-' + indexnumber;
+  let url = window.location.origin + "/api/guest/random/1/" + updatedval
+  $.get( url, function( data ) {
+    console.log(data)
+    $(selectedregnum).data('regnumber', data.data[0].regnumber);
+    $(selecteddetails).data('shopname', data.data[0].shop_name);
+    $(selecteddetails).data('name', data.data[0].name);
+    $(selecteddetails).data('city', data.data[0].city);
+  });
+}
+
+
 $(document).ready(function() {
   let loopindex = 0;
   let prizeindex = 0;
@@ -31,6 +64,16 @@ $(document).ready(function() {
         prizeindex++;
       }
       loopindex++;
+    } else if(e.keyCode == 82){
+      loopindex = loopindex - 2;
+      prizeindex = prizeindex -1;
+      revertrandom(prizeindex);
+      resetloop(prizeindex);
+      if (window.location.pathname === '/doorprize1'){
+        getnewrandom(prizeindex,1);
+      } else {
+        getnewrandom(prizeindex,2);
+      }
     }
  });
 });

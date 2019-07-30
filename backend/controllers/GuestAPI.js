@@ -58,7 +58,7 @@ router.get('/countguest', (req, res) => {
     });
 });
 
-router.get('/random/:numrand/:updatedval', VerifyToken, (req, res) => {
+router.get('/random/:numrand/:updatedval', (req, res) => {
   models.Guest.findAll({ 
       order: sequelize.literal('rand()'), 
       limit: parseInt(req.params.numrand),
@@ -81,6 +81,29 @@ router.get('/random/:numrand/:updatedval', VerifyToken, (req, res) => {
       return res.status(500).send({"status": 500, "data": [], "msg": "Error Retrieving data.."})
     });
 });
+
+router.post('/revertrandom/:guestregnumber/:updatedval', (req, res) => {
+  models.Guest.findAll({
+      where: {
+        regnumber: req.params.guestregnumber  
+      },
+      include: [{
+        model: models.Guesthistory, 
+        required: true
+      }],
+    })
+    .then( guests => {
+      // update hasprize value
+      sequelize.Promise.map(guests, (g) => {
+        return g.Guesthistory.update({hasprize:req.params.updatedval})
+      })
+      return res.status(200).send({"status": 200, "data": guests, "msg": "OK"})      
+    }).catch(err => {
+      console.log(err);
+      return res.status(500).send({"status": 500, "data": [], "msg": "Error Retrieving data.."})
+    });
+});
+
 
 router.post('/add', VerifyToken, (req, res) => {
   if (!req.body.code){
