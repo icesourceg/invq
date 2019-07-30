@@ -72,9 +72,9 @@ router.get('/random/:numrand/:updatedval', VerifyToken, (req, res) => {
     })
     .then( guests => {
       // update hasprize value
-      // sequelize.Promise.map(guests, (g) => {
-      //   return g.Guesthistory.update({hasprize:req.params.updatedval})
-      // })
+      sequelize.Promise.map(guests, (g) => {
+        return g.Guesthistory.update({hasprize:req.params.updatedval})
+      })
       return res.status(200).send({"status": 200, "data": guests, "msg": "OK"})      
     }).catch(err => {
       console.log(err);
