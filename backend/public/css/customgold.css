@@ -135,7 +135,7 @@ div.logo{
   position: absolute;
   width: 141px;
   height: 131px;
-  top: 15px;
+  top: 1%;
 }
 
 div.pearl{
@@ -327,11 +327,11 @@ div.scan-content-body {
 /*--------------------------------------*/
 
 div.prize-content{
-  position: absolute;
+  position: relative;
   min-width: 1000px !important;
   width: 1000px !important;
   height: 500px;
-  top:100px;
+  top:20%;
 	bottom: 0;
 	left: 0;
 	right: 0;
@@ -341,7 +341,7 @@ div.prize-content{
 
 div.doorprize-content-header{
   background: url('../images/redbanner2.png');
-  background-size: 1000px 220px;
+  background-size: 100% 220px;
   background-repeat: no-repeat;
   background-position: center; 
   font-size: 3em;

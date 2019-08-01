@@ -45,6 +45,8 @@ body, html {
   background-color: #856225; 
   background: radial-gradient(#d6b268, #856225);
   overflow: hidden;
+  min-width: 1024px;
+  min-height: 768px;
 }
 
 /* ------------------------------------ */
